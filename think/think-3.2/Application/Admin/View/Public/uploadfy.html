@@ -1,0 +1,40 @@
+<script type="text/javascript" src="__PUBLIC__/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/uploadify/uploadify_msg_zh.js"></script>
+<link href="__PUBLIC__/uploadify/uploadify.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
+    /**
+     * 
+     * 配置 更改配置 如下
+     * var up_one_conf={formData:{type:3,width:800,height:800}}
+     * 定义type  1 有水印  2 有大小图片  3： 1和2结合 4只改变尺寸  默认：使用原图不进行任何处理
+     */
+    var one_conf = {
+        auto: true, //关闭自动上传
+        removeTimeout: 1, //文件队列上传完成1秒后删除
+        swf: '__PUBLIC__/uploadify/uploadify.swf',
+        uploader: '__MODULE__/Login/uploadImg',
+        method: 'post', //方法，服务端可以用$_POST数组获取数据
+        buttonText: '上传图片', //设置按钮文本
+        multi: false, //允许同时上传多张图片
+        buttonClass: 'btn btn-success',
+        width: 96,
+        height: 34,
+        button_image_url:'/',
+        fileTypeDesc: 'Image Files', //只允许上传图像
+        fileTypeExts: '*.gif; *.jpg; *.png', //限制允许上传的图片后缀
+        fileSizeLimit: '5000KB', //限制上传的图片大小
+        onUploadSuccess: function (file, data, response) { //每次成功上传后执行的回调函数，从服务端返回数据到前端
+            $('#image').attr('src', data)
+            $('#thumb').val(data);
+        },
+        onSelectError: uploadify_onSelectError
+    };
+
+    $(function () {
+        //如果添加了配置
+        if (typeof (up_one_conf) != 'undefined') {
+            one_conf = $.extend(one_conf, up_one_conf);
+        }
+        $('#file_upload').uploadify(one_conf);
+    });
+</script>

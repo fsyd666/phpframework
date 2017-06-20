@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>后台管理</title>
+        <include file="Public:import" />
+        <style>
+			ul{padding:10px;}
+			ul li{margin:3px; float:left; width:250px;}
+			.sel a{text-decoration:underline; color:#094F94;}
+			
+		</style>
+    </head>
+    <body>
+    	<div style="background:#094F94; line-height:30px; padding-left:10px; color:white;">生成备份数据库</div>
+        <form action="{:U('Setting/optimize_ok')}" method="post" >
+        	<ul>
+                <volist name="list" id="vo">
+                  <li><label><input type="checkbox" checked="checked" value="{$vo}" name="tables[]" />&nbsp;{$vo}</label></li>
+                </volist>
+            </ul>             
+            <div class="glb_cl"><br/></div>
+            <div style="padding:10px;" class="sel">            	
+            	<a href="#" id="selAll">全选</a>&nbsp;
+                <a href="#" id="noAll">全不选</a>&nbsp;
+                <a href="#" id="iAll">反选</a>&nbsp;
+                <input type="submit"  value="优化" class="btn"/>&nbsp;
+          	</div>
+        </form>
+        <p>&nbsp;<a href="__URL__/back" class="btn2">数据库备份</a>
+        <a href="__URL__/showbackup"  class="btn2">数据库还原</a>
+        <a href="__URL__/optimize"  class="glb_cur">数据表优化</a></p>
+ 		<script type="text/javascript">
+			$(function(){
+				var sel=$('input:checkbox');
+				$('#selAll').click(function(){
+					sel.attr('checked',true);
+				})
+				$('#noAll').click(function(){
+					sel.attr('checked',false);
+				})
+				$('#iAll').click(function(){
+					sel.each(function(){
+						if($(this).attr('checked'))
+  							$(this).attr('checked',false)
+						else
+							$(this).attr('checked',true);
+					})
+				})
+			})
+			
+		</script>
+    </body>
+</html>

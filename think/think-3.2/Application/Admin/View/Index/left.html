@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>left菜单</title>
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style-left.css">
+        <script src="__PUBLIC__/js/jquery1.11.1.min.js"></script>
+        <script src="__PUBLIC__/js/left-menu.js"></script>
+    </head>
+    <body >
+        <nav class="sidebar-nav">
+            <ul id="menu">
+                <li class="active"> <a href="main.html" id="home" target="mainFrame"> <i class="icon-home"></i> <span class="title">首页</span> <span class="selected"></span></a> </li>
+                
+                <volist name='menu' id='vo'>
+                    <li> <a href="#"> <i class="icon-cogs"></i> <span class="title">{$vo.name}</span> <i class="icon-angle-left arrow"></i> </a>
+                        <ul class="sub-menu">
+                            <volist name="vo.item" id="v2">
+                                <li> <a href="__MODULE__/{$v2.name}" target="mainFrame">{$v2.title}</a> </li>
+                            </volist>
+                        </ul>
+                    </li>
+                </volist>                
+            </ul>
+        </nav>
+        <div class="left-footer">2013 © Admin by Ruijin.</div>
+    </body>
+</html>

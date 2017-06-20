@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>配置管理</title>
+    <include file="Public:import" />
+</head>
+
+<body>
+    <div class="mybreadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="__MODULE__" target="_top"><i class="icon-home"></i>主页</a></li>
+            <li><a href="__URL__/index">数据管理</a></li>
+            <li class="active">数据备份</li>
+        </ol>
+    </div>
+    <div class="panel panel-default">    
+        <div class="panel-body">
+            <div class="box_header">
+                <div class="btn-group pull-left"> <a href="__URL__/backup" class="btn btn-success"><i class="icon-plus"></i>备份</a>
+                </div>               
+            </div>
+            <form id="config_form">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th width="">文件名</th>
+                            <th width="">时间</th>
+                            <th width="130">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo">
+                        <tr>
+                            <td>{$vo.filename}</td>
+                            <td>{$vo.time}</td>
+                            <td>
+                                <a href="__URL__/restore/name/{$vo.filename}" onclick="return msg.confirm('确定还原?', this);" class="btn btn-info btn-xs"><i class="icon-edit"></i>还原</a>
+                                <a href="__URL__/delete/name/{$vo.filename}" onclick="return msg.confirm('确定删除?', this);" class="btn btn-danger btn-xs"><i class="icon-remove"></i>删除</a>
+                            </td>
+                        </tr>
+                    </volist>                    
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+<include file="Public:footer" />
+</body>
+</html>

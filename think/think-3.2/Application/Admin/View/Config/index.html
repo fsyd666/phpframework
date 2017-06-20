@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>配置管理</title>
+    <include file="Public:import" />
+</head>
+
+<body>
+    <div class="mybreadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="__MODULE__" target="_top"><i class="icon-home"></i>主页</a></li>
+            <li><a href="__URL__/index">配置管理</a></li>
+            <li class="active">列表</li>
+        </ol>
+    </div>
+    <div class="panel panel-default">    
+        <div class="panel-body">
+            <div class="box_header">
+                <div class="btn-group pull-left"> <a href="__URL__/add" class="btn btn-success"><i class="icon-plus"></i>添加</a>                  
+                    <button type="button" to="__URL__/resort" class="btn btn-default" id="update_val"><i class="icon-sort"></i>更新值</button>
+                </div>
+                <div class="pull-right">
+                    <form class="form-inline" role="form" action="__ACTION__" method="get" id="search_form">
+                        <select class="form-control" name="stype" id="search_stype">
+                            <option value="name" <if condition="$_REQUEST['stype']=='name'"> selected </if> >名称</option>
+                            <option value="val" <if condition="$_REQUEST['stype']=='val'"> selected </if> >值</option>
+                            <option value="desc" <if condition="$_REQUEST['stype']=='desc'"> selected </if> >描述</option>
+
+                        </select>
+                        <div class="form-group">
+                            <label class="sr-only" for="name">搜索内容</label>                            
+                            <input type="text" class="form-control" name="skey" value="{$Think.Request.skey}" placeholder="请输入搜索内容...">
+                        </div>
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
+                </div>
+            </div>
+            <form id="config_form">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th width="200">名称</th>
+                            <th width="">值</th>
+                            <th width="250">描述</th>
+                            <th width="60">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="list" id="vo">
+                        <tr>
+                            <td>{$vo.name}<input type="hidden" value="{$vo.name}" name="name[]" /></td>
+                            <td>
+                                <eq name="vo.type" value="2">
+                                <textarea name="val[]" class="form-control" rows="3">{$vo.val}</textarea>                                
+                                <else/>
+                                <input type="text" name="val[]" class="form-control" value="{$vo.val}" />
+                                </eq>
+                            </td>
+                            <td>{$vo.desc}</td>
+                            <td><a href="__URL__/edit/name/{$vo.name}" class="btn btn-info btn-xs"><i class="icon-edit"></i>编辑</a></td>
+                        </tr>
+                    </volist>                    
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+<include file="Public:footer" />
+<script>
+    $(function() {
+        $('#update_val').click(function() {
+            $.post('__URL__/editval',$('#config_form').serialize(), function(data) {
+                if (data == 'y') {
+                    msg.alert('更新成功');
+                } else {
+                    msg.alert(data,'',{type:'danger'});
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

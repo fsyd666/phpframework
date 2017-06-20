@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{$action_name}菜单</title>
+    <include file="Public:import" />
+    <script>
+        $(function() {
+            $('#_form_').Validform({tiptype: _6, showAllError: true});
+        });
+    </script>
+</head>
+
+<body>
+    <div class="mybreadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="__MODULE__" target="_top"><i class="icon-home"></i>主页</a></li>
+            <li><a href="__URL__/index">菜单管理</a></li>
+            <li class="active">{$action_name}</li>
+        </ol>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">{$action_name}</div>
+        <div class="panel-body">
+            <form class="form-horizontal" action="__SELF__" method="post" role="form" id="_form_">
+                <input type="hidden" value="{$data.id}" name="id" />
+
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">验证规则</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="name" value="{$data.name}" datatype="/\w+/" placeholder="请输入验证规则">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">所属菜单</label>
+                    <div class="col-sm-5">
+                        <select class="form-control" name="fid" datatype="*">
+                            <option value="">请选择...</option>
+                            <volist name="menu" id="vo">
+                                <option value="{$key}" <eq name="data.fid" value="$key">selected</eq> >{$vo}</option>
+                            </volist>                            
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">标题</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="title" value="{$data.title}" datatype="*" placeholder="请输入标题">
+                    </div>
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="lastname" class="col-sm-1 control-label">状态</label>
+                    <div class="col-sm-3">
+                        <input type="hidden" value="0" name="status" />
+                        <input type="checkbox" class="switch-checkbox" value="1" name="status" <eq name="data.status" value="1" >checked</eq> />
+                    </div>                    
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">附件条件</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="condition" value="{$data.condition}" placeholder="请输入附件条件">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">是否左侧菜单</label>
+                    <div class="col-sm-3">
+                        <input type="hidden" value="0" name="is_left_menu" />
+                        <input type="checkbox" class="switch-checkbox" value="1" data-on-text="是" data-off-text="否" name="is_left_menu" <eq name="data.is_left_menu" value="1" >checked</eq> />
+                    </div>                    
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">排序</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control"  name="sort" value="{$data.sort}"  placeholder="请输入排序">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">类型</label>
+                    <div class="col-sm-1">
+                        <input type="text" class="form-control" name="type" datatype="/^(1|2)$/" value="{$data.type}"  placeholder="请输入类型">
+                    </div>
+                    <div class="col-sm-5">
+                        <p class="help-block">不要修改，使用默认1的值（1或者2 1为及时认证 2为登录认证。）</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-1 col-sm-10">
+                        <button type="submit" class="btn btn-success">保存</button>
+                        <button type="reset" class="btn btn-default">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<include file="Public:footer" />
+</body>
+</html>

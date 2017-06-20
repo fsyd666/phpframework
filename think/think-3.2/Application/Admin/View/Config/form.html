@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{$action_name}配置</title>
+    <include file="Public:import" />
+    <script>
+        $(function () {
+            $('#_form_').Validform({tiptype: _6, showAllError: true});
+        });
+    </script>
+</head>
+
+<body>
+    <div class="mybreadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="__MODULE__" target="_top"><i class="icon-home"></i>主页</a></li>
+            <li><a href="__URL__/index">配置管理</a></li>
+            <li class="active">{$action_name}</li>
+        </ol>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">{$action_name}</div>
+        <div class="panel-body">
+            <form class="form-horizontal" action="__ACTION__" method="post" role="form" id="_form_">
+                <input type="hidden" value="{$data.name}" name="name" />
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">名称</label>
+                    <div class="col-sm-5">
+                        <eq name="action_name" value="修改"><p class="form-control-static">{$data.name}</p><else/>
+                        <input type="text" class="form-control" name="name" value="" datatype="/\w+/" placeholder="请输入名称">
+                        </eq>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">值</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="val" value="{$data.val}" datatype="*" placeholder="请输入值">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">类型</label>
+                    <div class="col-sm-5">
+                        <label class="checkbox-inline"><input type="radio" name="type" value="1" <eq name="data.type" value="1">checked</eq> />单行文本框</label>
+                        <label class="checkbox-inline"><input type="radio" name="type" value="2" <eq name="data.type" value="2">checked</eq> />多行文本框</label>                      
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">描述</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="desc" value="{$data.desc}" datatype="*" placeholder="请输入描述">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-1 col-sm-10">
+                        <button type="submit" class="btn btn-success">保存</button>
+                        <button type="reset" class="btn btn-default">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<include file="Public:footer" />
+</body>
+</html>

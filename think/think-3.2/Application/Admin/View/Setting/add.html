@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>添加网站优化</title>
+        <include file="Public:import" />
+        <style type="text/css">
+            body{background: #EAF0F5}
+            .grid-view{width:40%;margin:auto;margin-top:8%;}
+            .grid-view td{height:30px;padding:10px;}
+            .grid-view .inp{height:25px;width:50%}
+        </style>
+    </head>
+    <body>
+        <form action="__URL__/addAction" method="post" enctype="multipart/form-data" id="_form_">
+            <table class="grid-view">
+                <tr>
+                    <td width="20%"><img src="__PUBLIC__/phone/images/star_2.png" />网站说明</td>
+                    <td><input type="text" name="info" class="inp" datatype="*" nullmsg="网站说明不能为空！" /><span class="Validform_checktip">eg：首页优化</span></td>
+                </tr> 
+
+                <tr>
+                    <td><img src="__PUBLIC__/phone/images/star_2.png" />变量值</td>
+                    <td><input type="text" name="val" value="" class="inp" datatype="*" nullmsg="变量值不能为空！" /><span class="Validform_checktip">eg：房产网站</span></td>
+                </tr> 
+                
+                <tr>
+                    <td><img src="__PUBLIC__/phone/images/star_2.png" />变量名</td>
+                    <td><input type="text" name="name" class="inp" datatype="*" nullmsg="变量名不能为空！" /><span class="Validform_checktip">eg：sitename</span></td>
+                </tr> 
+                
+                <tr>
+                    <td colspan="2" class="filter">
+                        <input type="submit" class="btn2" value="确定" />
+                        <input type="reset" class="btn2" value="取消" />
+                    </td>
+                </tr>
+                
+            </table>
+        </form>
+    </body>
+</html>
+
+<script type="text/javascript">
+    //配置前端自动验证
+    $("#_form_").Validform({showAllError: true, tiptype: 3});
+</script>

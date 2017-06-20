@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>广告管理</title>
+    <include file="Public:import" />
+</head>
+
+<body>    
+    <div class="mybreadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="__MODULE__" target="_top"><i class="icon-home"></i>主页</a></li>
+            <li><a href="__URL__/index">广告管理</a></li>
+            <li class="active">列表</li>
+        </ol>
+    </div>
+    <div class="panel panel-default">    
+        <div class="panel-body">
+            <div class="box_header">
+                <div class="btn-group pull-left"> <a href="__URL__/add" class="btn btn-success"><i class="icon-plus"></i>添加</a>
+                    <button type="button" to="__URL__/remove" class="btn btn-default" id="removeAll"><i class="icon-remove"></i>删除</button>
+                    <button type="button" to="__URL__/resort" class="btn btn-default" id="resort"><i class="icon-sort"></i>更新排序</button>
+                </div>
+                <div class="pull-right">
+                    <form class="form-inline" role="form" action="__ACTION__" method="get" id="search_form">
+                        <select class="form-control" name="stype" id="search_stype">
+                            <option value="id" <if condition="$_REQUEST['stype']=='id'"> selected </if> >ID</option>
+                            <option value="aid" <if condition="$_REQUEST['stype']=='aid'"> selected </if> >广告位</option>
+                            <option value="name" <if condition="$_REQUEST['stype']=='name'"> selected </if> >名称</option>
+                            <option value="desc" <if condition="$_REQUEST['stype']=='desc'"> selected </if> >描述</option>                            
+                        </select>
+                        <div class="form-group">
+                            <label class="sr-only" for="name">搜索内容</label>
+                            <input type="text" class="form-control" name="skey" value="{$Think.Request.skey}" placeholder="请输入搜索内容...">
+                        </div>
+                        <div class="form-group" id='aid' style="display: none;">
+                            <select class="form-control" name="aid" style="width: 150px;">
+                                <volist name="adaddr" id="vo">
+                                    <option value="{$key}" <eq name="Think.Request.aid" value="$key">selected</eq> >{$vo}</option>
+                                </volist>
+                            </select>
+                        </div>                       
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
+                </div>
+            </div>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th width="30"><input type="checkbox" id="sel-all"/></th>
+                        <th width="">ID</th>
+                        <th width="">广告位</th>
+                        <th width="">名称</th>
+                        <th width="">图片</th>
+                        <th width="">描述</th>
+                        <th width="">Url</th>                        
+                        <th width="">排序</th>
+                        <th width="">状态</th>     
+                        <th width="183">操作</th>
+                    </tr>
+                </thead>
+                <tbody>                    
+                <volist name="list" id="vo">
+                    <tr>
+                        <td><input type="checkbox" name="ids[]" value="{$vo.id}" class="checkbox-sel"/></td>
+                        <td>{$vo.id}</td>
+                        <td>{$adaddr[$vo[aid]]}</td>
+                        <td>{$vo.name}</td>
+                        <td><img src="{$vo.photo}" height="80" /></td>
+                        <td>{$vo.desc}</td>
+                        <td>{$vo.url}</td>
+                        <td><input type="text" value="{$vo.sort}" ids="{$vo.id}" class="t_sort form-control text-center"/></td>
+                        <td>{$vo.status}</td>
+                        <td>
+                            <a href="__URL__/view/id/{$vo.id}" class="btn btn-success btn-xs active"><i class="icon-external-link"></i>查看</a>
+                            <a href="__URL__/edit/id/{$vo.id}" class="btn btn-info btn-xs active"><i class="icon-edit"></i>编辑</a>
+                            <a href="__URL__/remove/id/{$vo.id}" onclick="return msg.confirm('确定删除?', this);" class="btn btn-danger btn-xs active"><i class="icon-remove"></i>删除</a>
+                        </td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+            <div class="pager">{$show}</div>
+        </div>
+    </div>
+<include file="Public:footer" />
+</body>
+</html>

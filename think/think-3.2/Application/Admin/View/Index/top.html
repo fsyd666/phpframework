@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>后台管理系统</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/font-awesome.min.css">
+<script src="__PUBLIC__/js/jquery1.11.1.min.js"></script>
+<style>
+.header {height: 45px;	background: #1f262e;color: white;line-height: 48px;padding:0 20px;}
+.message a{position: relative;font-size: 18px;margin-left:30px;	color:#8a8a8a !important;}
+.message a:hover{text-decoration:none;}
+.badge {background: #e02222;position: absolute;left: -15px;top: -8px;font-size: 12px;font-weight:100;}
+.username{color:white;font-size:14px;position:relative;top:-3px;}
+.pull-left a{color: rgb(255, 255, 255); font-weight: bold; font-size: 26px; text-shadow: 0px 1px 1px rgb(79, 101, 199);}
+.pull-left sup{font-size: 14px; top: -0.75em; margin-left: 4px;}
+.pull-left a:hover{text-decoration: none;}
+</style>
+</head>
+<body>
+<div class="header">
+    <div class="pull-left"><a class="brand" href="/" target="_blank"> 卓汇金融<sup>V3.0</sup> </a></div>
+    <div class="pull-right message">                
+        <a href="__MODULE__/Setting/clear_cache" target="mainFrame" title="刷新缓存"><i class="icon-repeat"></i></a>
+        <a href="__MODULE__/Login/logout" target="_top" title="退出登录"><i class="icon-off"></i></a>
+        <a href="__MODULE__/Admin/edit_pwd" id="user_menu" target="mainFrame"> 
+        	<img alt="" src="__PUBLIC__/image/avatar1.jpg" width="30" height="30" style="margin-top:-6px;"> 
+                <span class="username">{$_SESSION['admin']['nickname']}</span>
+        </a>
+    </div>
+</div>
+</body>
+</html>

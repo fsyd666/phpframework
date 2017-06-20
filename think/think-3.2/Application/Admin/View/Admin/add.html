@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>添加后台管理员</title>
+    <include file="Public:import" />
+    <script>
+        $(function() {
+            $('#_form_').Validform({tiptype: _6, showAllError: true});
+        });
+    </script>
+</head>
+
+<body>
+    <div class="mybreadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="__MODULE__" target="_top"><i class="icon-home"></i>主页</a></li>
+            <li><a href="__URL__/index">后台用户管理</a></li>
+            <li class="active">{$action_name}</li>
+        </ol>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">{$action_name}</div>
+        <div class="panel-body">
+            <form class="form-horizontal" action="__SELF__" method="post" role="form" id="_form_">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">用户名</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="user" value="" ajaxurl="__URL__/chkuser" datatype="*5-18" nullmsg="请输入用户名" placeholder="请输入用户名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">密码</label>
+                    <div class="col-sm-5">
+                        <input type="password" class="form-control" name="pwd" value="" datatype="*5-18" nullmsg="请输入密码" placeholder="请输入密码">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">确认密码</label>
+                    <div class="col-sm-5">
+                        <input type="password" class="form-control" value="" datatype="*" recheck="pwd" nullmsg="请确认密码" placeholder="请输入密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">所属用户组</label>
+                    <div class="col-sm-10">                        
+                        <volist name="group" id="vo">
+                            <label class="checkbox-inline"><input datatype="*" name="group_id[]" type="checkbox" value="{$vo.id}" />{$vo.title}</label>
+                        </volist>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">昵称</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="nickname" value="系统管理员" datatype="*" nullmsg="请输入昵称" placeholder="请输入昵称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-1 col-sm-10">
+                        <button type="submit" class="btn btn-success">保存</button>
+                        <button type="reset" class="btn btn-default">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<include file="Public:footer" />
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{$action_name}链接分类</title>
+    <include file="Public:import" />
+    <script>
+        $(function() {
+            $('#_form_').Validform({tiptype: _6, showAllError: true});
+        });
+    </script>
+</head>
+
+<body>
+    <div class="mybreadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="__MODULE__" target="_top"><i class="icon-home"></i>主页</a></li>
+            <li><a href="__URL__/index">链接分类管理</a></li>
+            <li class="active">{$action_name}</li>
+        </ol>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">{$action_name}</div>
+        <div class="panel-body">
+            <form class="form-horizontal" action="__ACTION__" method="post" role="form" id="_form_">
+                <input type="hidden" value="{$data.id}" name="id" />
+                                                                        
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">名称</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" name="name" value="{$data.name}" datatype="*" placeholder="请输入名称">
+                            </div>
+                        </div>
+                                        <div class="form-group">
+                    <div class="col-sm-offset-1 col-sm-10">
+                        <button type="submit" class="btn btn-success">保存</button>
+                        <button type="reset" class="btn btn-default">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<include file="Public:footer" />
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>添加广告</title>
+    <include file="Public:import" />
+    <script>
+        var group_id="{$has_group|array_sum}";
+        $(function() {
+            $('#_form_').Validform({tiptype: _6, showAllError: true, ignoreHidden: true});
+            $('#edit_pwd').toggle(function() {
+                $('#pwd_div').show();
+            }, function() {
+                $('#pwd_div').hide();
+            });           
+        });
+    </script>
+</head>
+
+<body>
+    <div class="mybreadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="__MODULE__" target="_top"><i class="icon-home"></i>主页</a></li>
+            <li><a href="__URL__/index">后台用户管理</a></li>
+            <li class="active">{$action_name}</li>
+        </ol>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">{$action_name}</div>
+        <div class="panel-body">
+            <form class="form-horizontal" action="__SELF__" method="post" role="form" id="_form_">
+                <input type="hidden" name="id" value="{$data.id}" />
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">用户名</label>
+                    <div class="col-sm-5">
+                        <p class="form-control-static">{$data.user}<a href="#" id="edit_pwd" class="col-sm-offset-1">要修改密码?</a></p>              
+                    </div>
+                </div>                
+                <div style="display: none;" id="pwd_div">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">原始密码</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" name="oldpwd" value="" datatype="*" placeholder="请输入密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">密码</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" name="newpwd" value="" datatype="*" placeholder="请输入密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">确认密码</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" value="" datatype="*" recheck="newpwd" placeholder="请输入密码">
+                        </div>
+                    </div>
+                </div>              
+                
+                <div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">昵称</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" name="nickname" value="{$data.nickname}" datatype="*" placeholder="请输入昵称">
+                        </div>
+                    </div>                    
+                    <div class="form-group">
+                        <div class="col-sm-offset-1 col-sm-10">
+                            <button type="submit" class="btn btn-success">保存</button>
+                            <button type="reset" class="btn btn-default">重置</button>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+<include file="Public:footer" />
+</body>
+</html>

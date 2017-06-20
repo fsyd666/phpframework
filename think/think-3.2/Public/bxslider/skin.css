@@ -1,0 +1,7 @@
+.bx-wrapper .bx-prev{left:80px;}
+.bx-wrapper .bx-next{right:80px;}
+.bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto{bottom: 20px;}
+.bx-wrapper .bx-pager.bx-default-pager a{background: #666;}
+.bx-wrapper .bx-pager.bx-default-pager a:hover, .bx-wrapper .bx-pager.bx-default-pager a.active{background: #FFF;}
+.slide-box, .slide{height: 420px !important;}
+.bx-wrapper .bx-viewport{border: 0px;}

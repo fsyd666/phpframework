@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{$action_name}广告位</title>
+    <include file="Public:import" />
+    <script>
+        var up_one_conf = {formData: {width: 1000, height: 600}}
+        $(function () {            
+            $('#_form_').Validform({tiptype: _6, showAllError: true});
+        });
+    </script>
+</head>
+
+<body>
+    <div class="mybreadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="__MODULE__" target="_top"><i class="icon-home"></i>主页</a></li>
+            <li><a href="__URL__/index">广告位管理</a></li>
+            <li class="active">{$action_name}</li>
+        </ol>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">{$action_name}</div>
+        <div class="panel-body">
+            <form class="form-horizontal" action="__SELF__" method="post" role="form" id="_form_">
+                <input type="hidden" value="{$data.id}" name="id" />
+
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">名称</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="name" value="{$data.name}" datatype="*" placeholder="请输入名称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">广告类型</label>
+                    <div class="col-sm-5">
+                        <select class="form-control" name="type" datatype="*">
+                            <option value="">请选择...</option>
+                            <volist name="type" id="vo">
+                                <option value="{$key}" <eq name="data.type" value="$key">selected</eq> >{$vo}</option>
+                            </volist>                            
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">示意图片</label>
+                    <div class="col-sm-5">
+                        <input type="hidden" value="{$data.photo}" id="thumb" name="photo"/>
+                        <input type="file" class="form-control" id="file_upload" />
+                        <div class="uploadify_image"><img src="{$data.photo}" id="image" height="80"/></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">宽度</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="height" value="{$data.height}"  placeholder="请输入图片高度">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">高度</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="width" value="{$data.width}"  placeholder="请输入图片宽度">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-1 col-sm-10">
+                        <button type="submit" class="btn btn-success">保存</button>
+                        <button type="reset" class="btn btn-default">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<include file="Public:footer" />
+<include file="Public:uploadfy" />
+</body>
+</html>
