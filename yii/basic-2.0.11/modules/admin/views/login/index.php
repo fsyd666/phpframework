@@ -56,8 +56,7 @@ $this->registerCssFile('@web/lib/font-awesome/css/font-awesome.min.css');
                         </div>
                         <?php ActiveForm::end(); ?>
                     </div>
-                </div>
-                <div class="bottom">Copyright &copy; 2015 - 2020 <a href="#">系统登陆</a></div>
+                </div>        
             </div>
         </div>
         <?php $this->endBody() ?>
