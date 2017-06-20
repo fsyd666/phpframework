@@ -128,11 +128,11 @@ Class GIFEncoder {
 	::	GIFEncoder...
 	::
 	*/
-	function __construct (
+	function GIFEncoder	(
 							$GIF_src, $GIF_dly, $GIF_lop, $GIF_dis,
 							$GIF_red, $GIF_grn, $GIF_blu, $GIF_mod
 						) {
-		if ( ! is_array ( $GIF_src ) && ! is_array ( $GIF_dly ) ) {
+		if ( ! is_array ( $GIF_src ) && ! is_array ( $GIF_tim ) ) {
 			printf	( "%s: %s", $this->VER, $this->ERR [ 'ERR00' ] );
 			exit	( 0 );
 		}
@@ -357,7 +357,7 @@ Class GIFDecoder {
 	::	GIFDecoder ( $GIF_pointer )
 	::
 	*/
-	function __construct ( $GIF_pointer ) {
+	function GIFDecoder ( $GIF_pointer ) {
 		$this->GIF_stream = $GIF_pointer;
 
 		GIFDecoder::GIFGetByte ( 6 );	// GIF89a

@@ -3,7 +3,7 @@ namespace <?php echo $dir ?>\Model;
 
 use Think\Model;
 
-class <?php echo $model_name ?>Model extends CommonModel {
+class <?php echo $model_name ?>Model extends Model {
 public $_fields=array(
 //字段
 <?php foreach ($_fields as $v) { ?>

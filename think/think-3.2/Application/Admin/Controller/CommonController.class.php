@@ -43,12 +43,6 @@ class CommonController extends Controller {
         );
         $param = array_merge($_param, $param); //获得最新参数
 
-        if (!$status) {
-            if (is_string($param['where']) || is_numeric($param['where'])) {
-                $param['where'] = array('_string' => $param['where']);
-            }
-            $param['where']['status'] = 'no';
-        }
         $count = $model->where($param['where'])->count();
         $Page = new \Think\Page($count, $param['rows']);
         if ($param['relation']) {//关联模型

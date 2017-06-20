@@ -6,7 +6,7 @@ use Think\Model;
 /**
  * 友情链接分类
  */
-class LinkCateModel extends CommonModel {
+class LinkCateModel extends Model {
 
     public $_fields = array(
         //字段
