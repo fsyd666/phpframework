@@ -7,7 +7,7 @@ use Think\Model;
 /**
  * 广告位
  */
-class AdAddrModel extends CommonModel {
+class AdAddrModel extends Model {
 
     public $_fields = array(
         //字段

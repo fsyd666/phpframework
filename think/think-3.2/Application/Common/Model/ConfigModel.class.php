@@ -6,7 +6,7 @@ use Think\Model;
 /**
  * 网站配置
  */
-class ConfigModel extends CommonModel {
+class ConfigModel extends Model {
 
     public $_fields = array(
         //字段

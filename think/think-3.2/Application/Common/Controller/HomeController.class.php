@@ -9,20 +9,6 @@ class HomeController extends Controller {
     function _initialize() {
         //网站全局配置
         $this->assign('global', D('Config')->getConf());
-        //导航菜单
-        $ctrl = strtolower(CONTROLLER_NAME);
-        $module = strtolower(MODULE_NAME);
-        $nav = array(
-            array('name' => '官网首页', 'url' => '/', 'check' => "$module/$ctrl" == 'home/index' ? 1 : 0),
-            array('name' => '新手入门', 'url' => '/novice', 'check' => $ctrl == 'novice' ? 1 : 0),
-            array('name' => '名师直播', 'url' => '/live', 'check' => $ctrl == 'live' ? 1 : 0),
-            array('name' => '服务体系', 'url' => '/service', 'check' => $ctrl == 'service' ? 1 : 0),
-            array('name' => '工具下载', 'url' => '/download', 'check' => $ctrl == 'download' ? 1 : 0),
-            array('name' => '关于我们', 'url' => '/about', 'check' => $ctrl == 'about' ? 1 : 0),
-            array('name' => '个人中心', 'url' => '/member', 'check' => $module == 'member' ? 1 : 0),
-        );
-        $this->assign('nav', $nav);
-        //用户信息
         $this->assign('user', $_SESSION['member']);
     }
 

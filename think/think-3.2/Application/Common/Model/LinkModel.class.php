@@ -7,7 +7,7 @@ use Think\Model;
 /**
  * 友情链接
  */
-class LinkModel extends CommonModel {
+class LinkModel extends Model {
 
     public $_fields = array(
         //字段

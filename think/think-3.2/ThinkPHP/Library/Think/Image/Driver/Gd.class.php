@@ -60,18 +60,15 @@ class Gd{
         //销毁已存在的图像
         empty($this->img) || imagedestroy($this->img);
 
-        //打开图像，注意了，如果需要上传的gif图片动，则需要打开下面屏蔽的代码，注释掉此方法最后两句即可
-//        if('gif' == $this->info['type']){
-//            $class  =    'Think\\Image\\Driver\\GIF';
-//            $this->gif = new $class($imgname);
-//            $this->img = imagecreatefromstring($this->gif->image());
-//        } else {
-//            $fun = "imagecreatefrom{$this->info['type']}";
-//            $this->img = $fun($imgname);
-//        }
-        //屏蔽上面代码，主要正对gif图片只提取第一帧上传
-        $fun = "imagecreatefrom{$this->info['type']}";
-        $this->img = $fun($imgname);
+        //打开图像
+        if('gif' == $this->info['type']){
+            $class  =    'Think\\Image\\Driver\\GIF';
+            $this->gif = new $class($imgname);
+            $this->img = imagecreatefromstring($this->gif->image());
+        } else {
+            $fun = "imagecreatefrom{$this->info['type']}";
+            $this->img = $fun($imgname);
+        }
     }
 
     /**

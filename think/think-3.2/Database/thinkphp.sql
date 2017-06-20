@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本地
+Source Server         : localhost_3306
 Source Server Version : 50617
 Source Host           : localhost:3306
-Source Database       : thinkphp
+Source Database       : think
 
 Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-07-15 17:53:36
+Date: 2017-06-20 16:16:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -50,12 +50,12 @@ CREATE TABLE `zh_admin` (
   `last_ip` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`user`) USING HASH
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='后台用户表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='后台用户表';
 
 -- ----------------------------
 -- Records of zh_admin
 -- ----------------------------
-INSERT INTO `zh_admin` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '超级管理员', '1', '2016-05-11 17:44:05', '127.0.0.1');
+INSERT INTO `zh_admin` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '超级管理员', '1', '2017-06-20 15:45:50', '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for `zh_ad_addr`
@@ -128,7 +128,7 @@ CREATE TABLE `zh_auth_group` (
   `status` tinyint(1) DEFAULT '1',
   `rules` varchar(500) DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户组表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='用户组表';
 
 -- ----------------------------
 -- Records of zh_auth_group
@@ -195,11 +195,6 @@ INSERT INTO `zh_auth_rule` VALUES ('41', 'AuthGroup/index', '2', '管理组管�
 INSERT INTO `zh_auth_rule` VALUES ('42', 'AuthGroup/add', '2', '管理组添加', '1', '1', '', '50', '0');
 INSERT INTO `zh_auth_rule` VALUES ('43', 'AuthGroup/edit', '2', '管理组修改', '1', '1', '', '50', '0');
 INSERT INTO `zh_auth_rule` VALUES ('44', 'AuthGroup/remove', '2', '管理组删除', '1', '1', '', '50', '0');
-INSERT INTO `zh_auth_rule` VALUES ('114', 'Article/index', '7', '文章管理', '1', '1', '', '50', '1');
-INSERT INTO `zh_auth_rule` VALUES ('118', 'Article/view', '7', '文章查看', '1', '1', '', '50', '0');
-INSERT INTO `zh_auth_rule` VALUES ('117', 'Article/remove', '7', '文章删除', '1', '1', '', '50', '0');
-INSERT INTO `zh_auth_rule` VALUES ('116', 'Article/edit', '7', '文章修改', '1', '1', '', '50', '0');
-INSERT INTO `zh_auth_rule` VALUES ('115', 'Article/add', '7', '文章添加', '1', '1', '', '50', '0');
 INSERT INTO `zh_auth_rule` VALUES ('66', 'Config/index', '6', '配置管理', '1', '1', '', '50', '1');
 INSERT INTO `zh_auth_rule` VALUES ('67', 'Config/add', '6', '配置添加', '1', '1', '', '50', '0');
 INSERT INTO `zh_auth_rule` VALUES ('68', 'Config/edit', '6', '配置修改', '1', '1', '', '50', '0');
@@ -232,9 +227,9 @@ CREATE TABLE `zh_config` (
 -- ----------------------------
 -- Records of zh_config
 -- ----------------------------
-INSERT INTO `zh_config` VALUES ('webname', '卓汇研究院', '1', '网站名称');
-INSERT INTO `zh_config` VALUES ('desc', '卓汇研究院', '2', '全局SEO描述');
-INSERT INTO `zh_config` VALUES ('keywords', '卓汇研究院', '2', '全局关键字');
+INSERT INTO `zh_config` VALUES ('webname', '我的网站', '1', '网站名称');
+INSERT INTO `zh_config` VALUES ('desc', '我的网站', '2', '全局SEO描述');
+INSERT INTO `zh_config` VALUES ('keywords', '我的网站', '2', '全局关键字');
 
 -- ----------------------------
 -- Table structure for `zh_link`
@@ -248,7 +243,7 @@ CREATE TABLE `zh_link` (
   `status` tinyint(4) DEFAULT '1',
   `url` varchar(200) DEFAULT NULL COMMENT 'URL地址',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='友情链接表 ';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='友情链接表 ';
 
 -- ----------------------------
 -- Records of zh_link
@@ -262,7 +257,7 @@ CREATE TABLE `zh_link_cate` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `name` varchar(80) DEFAULT NULL COMMENT '名称',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='链接分组表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='链接分组表';
 
 -- ----------------------------
 -- Records of zh_link_cate

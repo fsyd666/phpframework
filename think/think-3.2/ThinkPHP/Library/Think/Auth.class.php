@@ -153,7 +153,7 @@ class Auth{
             ->where("a.uid='$uid' and g.status='1'")
             ->join($this->_config['AUTH_GROUP']." g on a.group_id=g.id")
             ->field('rules')->select();
-        $groups[$uid]=$user_groups?:array();
+        $groups[$uid]=$user_groups?$user_groups:array();
         return $groups[$uid];
     }
 
@@ -200,7 +200,7 @@ class Auth{
 
                 $command = preg_replace('/\{(\w*?)\}/', '$user[\'\\1\']', $rule['condition']);
                 //dump($command);//debug
-                (eval('$condition=(' . $command . ');'));
+                @(eval('$condition=(' . $command . ');'));
                 if ($condition) {
                     $authList[] = strtolower($rule['name']);
                 }
@@ -220,18 +220,10 @@ class Auth{
     /**
      * 获得用户资料,根据自己的情况读取数据库
      */
-    /*
     protected function getUserInfo($uid) {
         static $userinfo=array();
         if(!isset($userinfo[$uid])){
              $userinfo[$uid]=M()->where(array('uid'=>$uid))->table($this->_config['AUTH_USER'])->find();
-        }
-        return $userinfo[$uid];
-    }*/
-	protected function getUserInfo($uid) {
-        static $userinfo=array();
-        if(!isset($userinfo[$uid])){
-             $userinfo[$uid]=M()->where(array('id'=>$uid))->table($this->_config['AUTH_USER'])->find();
         }
         return $userinfo[$uid];
     }
