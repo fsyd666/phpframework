@@ -1,0 +1,24 @@
+<?php
+/**
+ * Yii bootstrap file.
+ * Used for enhanced IDE code autocompletion.
+ */
+class Yii extends \yii\BaseYii
+{
+    /**
+     * @var BaseApplication|WebApplication|ConsoleApplication the application instance
+     */
+    public static $app;
+}
+/**
+ * Class WebApplication
+ * Include only Web application related components here
+ *
+ * @property \yii\web\Request $request request
+ * @property \yii\web\Response $response response
+ * 
+ */
+class WebApplication extends yii\web\Application
+{
+}
+
