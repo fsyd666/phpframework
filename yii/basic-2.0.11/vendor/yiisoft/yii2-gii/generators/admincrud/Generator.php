@@ -33,13 +33,13 @@ use app\modules\admin\models\AuthItem;
  */
 class Generator extends \yii\gii\Generator {
 
-    public $modelClass = 'app\modules\admin\models\XXX';
+    public $modelClass = 'app\models\XXX';
     public $controllerClass = "app\modules\admin\controllers\XXXController";
-    public $viewPath = '@app/modules/admin/views/XXX';
+    public $viewPath = '@app/modules/admin/views/xxx';
     public $baseControllerClass = 'yii\web\Controller';
     public $indexWidgetType = 'grid';
     public $title;
-    public $searchModelClass = 'app\modules\admin\models\XXXSearch';
+    public $searchModelClass = 'app\models\XXXSearch';
 
     /**
      * @var boolean whether to wrap the `GridView` or `ListView` widget with the `yii\widgets\Pjax` widget
@@ -128,7 +128,7 @@ class Generator extends \yii\gii\Generator {
         return array_merge(parent::hints(), [
             'title' => '这个是标题，放到各个视图中和数据库验证中的 标题，非常重要!',
             'modelClass' => 'This is the ActiveRecord class associated with the table that CRUD will be built upon.
-                You should provide a fully qualified class name, e.g., <code>app\models\Post</code>.',
+                You should provide a fully qualified class name, e.g., <code>app\modules\admin\models\Post</code>.',
             'controllerClass' => 'This is the name of the controller class to be generated. You should
                 provide a fully qualified namespaced class (e.g. <code>app\controllers\PostController</code>),
                 and class name should be in CamelCase with an uppercase first letter. Make sure the class
@@ -141,7 +141,7 @@ class Generator extends \yii\gii\Generator {
             'indexWidgetType' => 'This is the widget type to be used in the index page to display list of the models.
                 You may choose either <code>GridView</code> or <code>ListView</code>',
             'searchModelClass' => 'This is the name of the search model class to be generated. You should provide a fully
-                qualified namespaced class name, e.g., <code>app\models\PostSearch</code>.',
+                qualified namespaced class name, e.g., <code>app\modules\admin\models\PostSearch</code>.',
             'enablePjax' => 'This indicates whether the generator should wrap the <code>GridView</code> or <code>ListView</code>
                 widget on the index page with <code>yii\widgets\Pjax</code> widget. Set this to <code>true</code> if you want to get
                 sorting, filtering and pagination without page refreshing.',
