@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use app\modules\admin\components\ActiveForm;
 use yii\helpers\ArrayHelper;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Menu */
@@ -13,11 +14,17 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'parent')->dropDownList($model->parents,['prompt'=>'请选择']) ?>
+    <?= $form->field($model, 'parent')->dropDownList($model->parents, ['prompt' => '请选择']) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'route')->dropDownList(ArrayHelper::map($pers, 'name', 'name'),['prompt'=>'请选择']) ?>
+    <?=
+    $form->field($model, 'route')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map($pers, 'name', 'name'),
+        'language' => 'zh-CN',
+        'options' => ['placeholder' => '请选择'],
+    ]);
+    ?>   
 
     <?= $form->field($model, 'order')->textInput() ?>
 
