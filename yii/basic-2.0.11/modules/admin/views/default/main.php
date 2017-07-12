@@ -18,20 +18,11 @@
         <h3 class="panel-title">我的状态</h3>
     </div>
     <div class="panel-body">
-        <p>登陆者：<?= $user->user ?> , 用户昵称：<?= $user->nickname ?></p>
+        <p>登陆者：<?= $user->username ?> , 用户昵称：<?= $user->nickname ?></p>
         <p>上次登录时间：<?= date('Y-m-d H:i:s', $user->last_time) ?>，登录IP:<?= $user->last_ip ?></p>            
     </div>
 </div>
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">最新内容</h3>
-    </div>
-    <div class="panel-body">
-        <p>最新提问：{$q_num}</p>
-        <p>诊断数量：{$z_num}</p>
-        <p>服务器时间：{:date('Y-m-d H:i:s')}</p>
-    </div>
-</div>
+
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">服务器信息</h3>

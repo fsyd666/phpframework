@@ -10,9 +10,9 @@ use yii\filters\VerbFilter;
 use app\modules\admin\models\AuthItemSearch;
 
 /**
- * RbacController implements the CRUD actions for AuthItem model.
+ * 路由管理
  */
-class PermController extends CommonController {
+class RouteController extends CommonController {
 
     private $_type = 2;
 
@@ -29,19 +29,6 @@ class PermController extends CommonController {
             ],
         ];
     }
-
-//    function actionTest() {
-//        $ctrlId = 'member';
-//        $title = '会员';
-//        $time = time();
-//        Yii::$app->db->createCommand()->batchInsert('auth_item', ['name', 'type', 'description', 'created_at', 'updated_at'], [
-//            ["$ctrlId/index", 2, $title . '管理', $time, $time],
-//            ["$ctrlId/create", 2, $title . '添加', $time, $time],
-//            ["$ctrlId/update", 2, $title . '修改', $time, $time],
-//            ["$ctrlId/view", 2, $title . '查看', $time, $time],
-//            ["$ctrlId/delete", 2, $title . '删除', $time, $time],
-//        ])->execute();
-//    }
 
     /**
      * Lists all AuthItem models.
@@ -79,7 +66,7 @@ class PermController extends CommonController {
         $model->type = $this->_type;
 
         if ($model->load(Yii::$app->request->post()) && $model->addPerm()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['create']);
         }
         return $this->render('create', [
                     'model' => $model,
@@ -135,8 +122,9 @@ class PermController extends CommonController {
     protected function getNoAddPerm() {
         $path = dirname(__FILE__);
         $files = scandir($path);
-        $ignore = array('CommonController.php', 'DefaultController.php', 'LoginController.php');
+        $ignore = array('CommonController.php', 'DefaultController.php', 'LoginController.php','RuleController.php');
         $perms = AuthItem::find()->asArray()->where(['type' => 2])->indexBy('name')->all();
+        $data=array();
 
         foreach ($files as $v) {
             if ($v == '.' || $v == '..' || in_array($v, $ignore)) {
@@ -148,7 +136,7 @@ class PermController extends CommonController {
                 if ($v2) {
                     $name = strtolower($match[1][0] . '/' . $v2);
                     if (!$perms[$name]) {
-                        $data[] = $name;
+                        $data[$name] = $name;
                     }
                 }
             }

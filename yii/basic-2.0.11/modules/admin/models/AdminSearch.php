@@ -18,7 +18,7 @@ class AdminSearch extends Admin {
     public function rules() {
         return [
             [['id', 'status', 'last_time'], 'integer'],
-            [['user', 'pwd', 'auth_key', 'nickname', 'last_ip', 'addtime'], 'safe'],
+            [['username', 'password', 'auth_key', 'nickname', 'last_ip', 'addtime'], 'safe'],
         ];
     }
 
@@ -63,8 +63,8 @@ class AdminSearch extends Admin {
             'addtime' => $this->addtime,
         ]);
 
-        $query->andFilterWhere(['like', 'user', $this->user])
-                ->andFilterWhere(['like', 'pwd', $this->pwd])
+        $query->andFilterWhere(['like', 'username', $this->username])
+                ->andFilterWhere(['like', 'password', $this->password])
                 ->andFilterWhere(['like', 'auth_key', $this->auth_key])
                 ->andFilterWhere(['like', 'nickname', $this->nickname])
                 ->andFilterWhere(['like', 'last_ip', $this->last_ip]);

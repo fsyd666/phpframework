@@ -10,7 +10,7 @@ use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 
 /**
- * RoleController implements the CRUD actions for AuthItem model.
+ * 角色管理
  */
 class RoleController extends CommonController {
 

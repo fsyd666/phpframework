@@ -24,19 +24,24 @@ $this->title = '管理员管理';
         <div class="box_header">
             <div class="btn-group pull-left">
                 <?= Html::a('<i class="icon-plus"></i>添加', ["create"], ["class" => "btn btn-success"]) ?>   
-                <?= Html::a('<i class="icon-remove"></i>删除',['delete'],['class'=>'btn btn-default','id'=>'removeAll'])?>          
-                <a href="__URL__/toExcel" onclick="return msg.confirm('确定要导出到Excel？', this)" class="btn btn-default"><i class="icon-signout"></i>导出到Excel</a>
+                <?= Html::a('<i class="icon-remove"></i>删除', ['delete'], ['class' => 'btn btn-default', 'id' => 'removeAll']) ?>                          
             </div>
         </div>
         <?=
         GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
-            'columns' => [               
+            'columns' => [
                 ['class' => 'app\modules\admin\components\SelectColumn'],
-                'id',
-                'user',
+                ['attribute' => 'id', 'options' => ['width' => 80]],
+                'username',
                 'nickname',
+                [
+                    'attribute' => 'status',
+                    'value' => function($data) {
+                        return $data->status == 1 ? '正常' : '禁用';
+                    }
+                ],
                 'last_time:datetime',
                 'last_ip',
                 'addtime',

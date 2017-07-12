@@ -20,13 +20,19 @@ class Menu extends \yii\db\ActiveRecord {
     public static function tableName() {
         return 'menu';
     }
-    
     private $_parents = [
         1 => '会员管理',
         2 => '内容管理',
         3 => '管理员管理',
-        4 => '权限管理',
-        5 => '系统管理'
+        4 => '系统设置',
+        5 => '权限管理'
+    ];
+    private $_icon = [
+        1 => 'icon-male',
+        2 => 'icon-archive',
+        3 => 'icon-user',
+        4 => 'icon-gear',
+        5 => 'icon-lock',
     ];
 
     /**
@@ -34,9 +40,9 @@ class Menu extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['title', 'perm', 'fid'], 'required'],
-            [['sort'], 'integer'],
-            [['title', 'perm'], 'string', 'max' => 60],
+            [['name', 'route', 'parent'], 'required'],
+            [['order'], 'integer'],
+            [['name', 'route'], 'string', 'max' => 60],
         ];
     }
 
@@ -46,10 +52,10 @@ class Menu extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return [
             'id' => 'ID',
-            'title' => '标题',
-            'perm' => '权限',
-            'sort' => '排序',
-            'fid' => '父级菜单'
+            'name' => '标题',
+            'route' => '路由',
+            'order' => '排序',
+            'parent' => '父级菜单'
         ];
     }
 
@@ -59,11 +65,11 @@ class Menu extends \yii\db\ActiveRecord {
 
     function getMenu() {
         foreach ($this->_parents as $k => $v) {
-            $tmp = $this->find()->where(['fid' => $k])->orderBy('sort')->asArray()->all();
+            $tmp = $this->find()->where(['parent' => $k])->orderBy('order')->asArray()->all();
             if (!$tmp) {
                 continue;
             }
-            $data[] = ['title' => $v, 'child' => $tmp];
+            $data[] = ['name' => $v, 'icon' => $this->_icon[$k], 'child' => $tmp];
         }
         return $data;
     }

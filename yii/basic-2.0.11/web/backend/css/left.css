@@ -20,7 +20,7 @@ body {
 }
 ul.sub-menu a {
 	border: 0px;
-	padding: 5px 45px;
+	padding: 5px 40px;
 	margin: 1px 0px;
 }
 ul.sub-menu > li:first-child {
@@ -58,8 +58,8 @@ li [class^="icon-"], li [class*=" icon-"] {
 	display: inline-block;
 	width: 1.25em;
 	text-align: center;
-	height: 1.2em;
-	font-size:1.25em;
+	height: 1.2em;	
+        font-size: 1.2em;
 }
 span.selected{
 	display: block;

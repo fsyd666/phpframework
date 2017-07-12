@@ -8,16 +8,6 @@ $config = [
     'bootstrap' => ['log'],
     'language' => 'zh-CN',
     'components' => [
-        'assetManager' => [
-            'bundles' => [
-                'yii\web\JqueryAsset' => [
-                    'sourcePath' => null, // 一定不要发布该资源
-                    'js' => [
-                        '//libs.baidu.com/jquery/1.8.3/jquery.min.js',
-                    ]
-                ],
-            ],
-        ],
         'formatter' => [
             'datetimeFormat' => 'php:Y-m-d H:i:s',
         ],

@@ -67,7 +67,7 @@ class MenuController extends CommonController {
             //获取权限
             $auth_item = new AuthItem();
             $pers = $auth_item->findAll(['type' => 2]);
-            $model->sort = 100;
+            $model->order = 50;
             return $this->render('create', [
                         'model' => $model,
                         'pers' => $pers,

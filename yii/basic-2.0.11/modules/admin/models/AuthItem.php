@@ -38,7 +38,8 @@ class AuthItem extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['name', 'type'], 'required'],
+            [['name', 'type', 'description'], 'required'],
+            ['name','match','pattern'=>'/^[a-zA-Z0-9\*_\/]+$/','message'=>'只允许使用a-zA-Z0-9*_/'],
             [['type', 'created_at', 'updated_at'], 'integer'],
             [['description', 'data'], 'string'],
             [['name', 'rule_name'], 'string', 'max' => 64],
@@ -171,9 +172,10 @@ class AuthItem extends \yii\db\ActiveRecord {
 
     public function getRoles() {
         $tmp = $this->findAll(['type' => 1]);
+        $data = [];
         if (is_array($tmp)) {
             foreach ($tmp as $v) {
-                $data[$v->name] = $v->name ? $v->name : $v->description;
+                $data[$v->name] = $v->description ? $v->description : $v->name;
             }
         }
         return $data;

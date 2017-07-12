@@ -24,9 +24,9 @@ $this->title = '菜单管理';
         'model' => $model,
         'attributes' => [
             'id',
-            'title',
-            'perm',
-            'sort',
+            'name',
+            'route',
+            'order',
         ],
     ]) ?>
     <p>

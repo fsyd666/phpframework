@@ -61,24 +61,34 @@ class AdminController extends CommonController {
     public function actionCreate() {
         $model = new Admin();
         $model->setScenario('create');
+
+        //ajax验证用户名
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return \yii\bootstrap\ActiveForm::validate($model);
+        }
+
         if ($model->load(Yii::$app->request->post())) {
-            //ajax验证用户名
-            if (Yii::$app->request->isAjax) {
-                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-                return \yii\bootstrap\ActiveForm::validate($model);
-            }
 
             $model->auth_key = md5(uniqid());
-            $model->pwd = md5($model->pwd);
+            $model->password = md5($model->password);
+            $model->access_token = md5(time());
             if ($model->save()) {
+                if (false != ($role = Yii::$app->authManager->getRole($model->role_name))) {
+                    Yii::$app->authManager->assign($role, $model->id);
+                }
+
                 return $this->redirect(['index']);
             } else {
-                Yii::$app->response->format = Response::FORMAT_JSON;
-                return 'aaa';
+                $this->error('添加失败!');
             }
         }
+
+        $roles = (new AuthItem())->getRoles();
+
         return $this->render('create', [
                     'model' => $model,
+                    'roles' => $roles,
         ]);
     }
 
@@ -91,13 +101,23 @@ class AdminController extends CommonController {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
         $auth = Yii::$app->authManager;
-
+        //场景  只需要 在model的rules里设置 然后再这里设置
         $model->scenario = 'update';
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if (false != ($role = $auth->getRole($model->role_name))) {
-                $auth->assign($role, $model->id);
+        if (Yii::$app->request->isPost) {
+            $post = Yii::$app->request->post();
+            if (trim($post['Admin']['password']) == '') {
+                unset($post['Admin']['password']);
+            } else {
+                $post['Admin']['password'] = md5($post['Admin']['password']);
             }
-            return $this->redirect(['index']);
+            if ($model->load($post) && $model->save()) {
+                if (false != ($role = $auth->getRole($model->role_name))) {
+                    //移除所有，重新添加
+                    $auth->revokeAll($model->id);
+                    $auth->assign($role, $model->id);
+                }
+                return $this->redirect(['index']);
+            }
         } else {
             //获取角色
             $roles = (new AuthItem())->getRoles();

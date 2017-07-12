@@ -10,8 +10,8 @@ use yii\db\ActiveRecord;
  * This is the model class for table "admin".
  *
  * @property integer $id
- * @property string $user
- * @property string $pwd
+ * @property string $username
+ * @property string $password
  * @property string $auth_key
  * @property string $nickname
  * @property integer $status
@@ -29,19 +29,23 @@ class Admin extends ActiveRecord {
     }
 
     public $role_name;
+    public $oldpwd;
+    public $repwd;
 
     /**
      * @inheritdoc
      */
     public function rules() {
         return [
-            [['user', 'nickname', 'pwd'], 'required', 'on' => 'create'],
+            [['username', 'nickname', 'password', 'role_name'], 'required', 'on' => 'create'],
             [['nickname', 'role_name'], 'required', 'on' => 'update'],
+            [['oldpwd', 'repwd', 'password', 'nickname'], 'required', 'on' => 'myinfo'],
+            ['repwd', 'compare', 'compareAttribute' => 'password', 'on' => 'myinfo', 'message' => '两次密码输入不一致'],
             [['status', 'last_time'], 'integer'],
-            [['addtime'], 'safe'],
-            [['user'], 'string', 'max' => 20, 'min' => 5],
-            [['pwd'], 'string', 'max' => 32, 'min' => 5],
-            [['user'], 'unique', 'message' => '用户名已经存在'],
+            [['addtime','oldpwd'], 'safe'],
+            [['username'], 'string', 'max' => 20, 'min' => 5],
+            [['password'], 'string', 'max' => 32, 'min' => 5],
+            [['username'], 'unique', 'message' => '用户名已经存在'],
         ];
     }
 
@@ -51,15 +55,17 @@ class Admin extends ActiveRecord {
     public function attributeLabels() {
         return [
             'id' => 'ID',
-            'user' => '用户名',
+            'username' => '用户名',
             'nickname' => '昵称',
             'status' => '状态',
             'last_time' => '最后登录时间',
             'last_ip' => '最后登录IP',
             'addtime' => '创建时间',
-            'pwd' => '密码',
+            'password' => '密码',
             'auth_key' => '验证密匙',
             'role_name' => '角色',
+            'oldpwd' => '原密码',
+            'repwd' => '确认密码',
         ];
     }
 

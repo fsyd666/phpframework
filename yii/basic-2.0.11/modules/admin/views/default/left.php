@@ -29,14 +29,14 @@ $this->registerCssFile('@web/lib/font-awesome/css/font-awesome.min.css');
                 </li>
 
                 <?php if (is_array($data)) foreach ($data as $v) { ?>
-                        <li> <a href="#"> <i class="icon-cogs"></i> <span class="title"><?= $v['title'] ?></span> 
+                        <li> <a href="#"> <i class="<?= $v['icon'] ?>"></i> <span class="title"><?= $v['name'] ?></span> 
                                 <i class="icon-angle-left arrow"></i></a>
                             <ul class="sub-menu">
                                 <?php
                                 foreach ($v['child'] as $v2) {
-                                    echo '<li>' . Html::a($v2['title'], [$v2['perm']], ['target' => 'mainFrame']) . '</li>';
+                                    echo '<li>' . Html::a($v2['name'], [$v2['route']], ['target' => 'mainFrame']) . '</li>';
                                 }
-                                ?>                            
+                                ?>
                             </ul>
                         </li>
                     <?php } ?>

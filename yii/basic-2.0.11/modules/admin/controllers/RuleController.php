@@ -9,7 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * RuleController implements the CRUD actions for AuthRule model.
+ * 规则管理
  */
 class RuleController extends CommonController
 {

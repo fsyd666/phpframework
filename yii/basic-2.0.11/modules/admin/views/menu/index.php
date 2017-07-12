@@ -31,14 +31,14 @@ $this->title = '菜单管理';
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
                 'id',
-                ['attribute' => 'fid', 'value' =>
+                ['attribute' => 'parent', 'value' =>
                     function($model) {
-                        return $model->parents[$model->fid];
+                        return $model->parents[$model->parent];
                     }
                 ],
-                'title',
-                'perm',
-                'sort',
+                'name',
+                'route',
+                'order',
                 ['class' => 'app\modules\admin\components\ActionColumn'],
             ],
         ]);

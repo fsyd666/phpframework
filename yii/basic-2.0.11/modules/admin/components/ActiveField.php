@@ -7,7 +7,7 @@ use yii\helpers\Html;
 class ActiveField extends \yii\widgets\ActiveField {
 
     /**
-     * 静态提示 如 user 
+     * 静态提示 如 username 
      * @param type $options
      * @return ActiveField
      */

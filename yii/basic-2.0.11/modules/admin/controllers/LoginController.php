@@ -27,4 +27,19 @@ class LoginController extends \yii\web\Controller {
         return $this->redirect($user->loginUrl);
     }
 
+    public function actions() {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'maxLength' => 4,
+                'minLength' => 4,
+                'height' => 32,
+                'offset' => 10,
+            ],
+        ];
+    }
+
 }

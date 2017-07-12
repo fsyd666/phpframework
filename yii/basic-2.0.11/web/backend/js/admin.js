@@ -4,13 +4,13 @@ $(function () {
         var index = label.index();
         if (index == 0) {
             if ($(this).is(':checked')) {
-                label.siblings().find('input:checkbox').attr('checked', 'checked');
+                label.siblings().find('input:checkbox').prop('checked', true);
             } else {
-                label.siblings().find('input:checkbox').removeAttr('checked');
+                label.siblings().find('input:checkbox').prop('checked',false);
             }
         } else {
             if ($(this).is(':checked')) {
-                label.siblings().first().find('input:checkbox').attr('checked', 'checked');
+                label.siblings().first().find('input:checkbox').prop('checked', true);
             }
         }
     });

@@ -19,9 +19,7 @@ AdminAsset::register($this);
         <?php $this->head() ?>
     </head>
     <body>
-        <?php $this->beginBody(); ?>
-        <?= $content ?>
-        <?php $this->endBody() ?>
+
         <?php
         if (Yii::$app->getSession()->hasFlash('error')) {
             echo Alert::widget([
@@ -39,6 +37,11 @@ AdminAsset::register($this);
             ]);
         }
         ?>
+
+        <?php $this->beginBody(); ?>
+        <?= $content ?>
+        <?php $this->endBody() ?>
+
     </body>
 </html>
 <?php $this->endPage() ?>

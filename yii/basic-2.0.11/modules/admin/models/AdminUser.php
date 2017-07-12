@@ -20,7 +20,7 @@ class AdminUser extends ActiveRecord implements IdentityInterface {
      * @return \static
      */
     public static function findByUsername($username) {
-        return static::findOne(['user' => $username]);
+        return static::findOne(['username' => $username]);
     }
 
     /**
@@ -35,7 +35,7 @@ class AdminUser extends ActiveRecord implements IdentityInterface {
             return new static($session['admin']);
         } else {
             $session['admin'] = static::findone($id);
-            $session['admin']->pwd = null;
+            $session['admin']->password = null;
             return $session['admin'];
         }
     }
@@ -78,7 +78,7 @@ class AdminUser extends ActiveRecord implements IdentityInterface {
      * @return type
      */
     public function validatePassword($password) {
-        return $this->pwd === md5($password);
+        return $this->password === md5($password);
     }
 
 }

@@ -22,11 +22,13 @@ $this->title = '管理员管理';
         <div class="admin-form">
             <?php $form = ActiveForm::begin(); ?>
 
-            <?= $form->field($model, 'user', ['enableAjaxValidation' => true])->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'username', ['enableAjaxValidation' => true])->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'pwd')->passwordInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'nickname')->textInput(['maxlength' => true]) ?>
+            
+            <?= $form->field($model, 'role_name')->dropDownList($roles, ['prompt' => '请选择角色']) ?>
 
             <div class="form-group">
                 <div class="col-sm-offset-1 col-sm-10">

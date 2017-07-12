@@ -30,7 +30,7 @@ $this->registerCss(
     <body>
         <?php $this->beginBody() ?>
         <div class="header">
-            <div class="pull-left"><a class="brand" href="/" target="_blank"> 卓汇金融<sup>V3.0</sup> </a></div>
+            <div class="pull-left"><a class="brand" href="/" target="_blank"> 后台系统<sup>V3.0</sup> </a></div>
             <div class="pull-right message">        
                 <a href="/AdminMsg/index" target="mainFrame" title="最新消息">
                     <?php if (isset($msg)): ?>
@@ -40,7 +40,7 @@ $this->registerCss(
                 </a>
                 <a href="/Setting/clear_cache" target="mainFrame" title="刷新缓存"><i class="icon-repeat"></i></a>
                 <a href="<?= Url::to(['login/logout']) ?>" target="_top" title="退出登录"><i class="icon-off"></i></a>
-                <a href="/Admin/edit_pwd" id="user_menu" target="mainFrame"> 
+                <a href="<?= Url::to(['default/myinfo']) ?>" id="user_menu" target="mainFrame"> 
                     <img alt="" src="<?= Url::to('@web/backend/images/avatar.jpg'); ?>" width="30" height="30" style="margin-top:-6px;"> 
                     <span class="username"><?= $user->nickname ?></span>
                 </a>

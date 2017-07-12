@@ -23,12 +23,12 @@ $this->title = '管理员管理';
         <div class="admin-form">
             <?php $form = ActiveForm::begin(); ?>
 
-            <?= $form->field($model, 'user')->formStatic() ?>
+            <?= $form->field($model, 'username')->formStatic() ?>
 
-            <?= $form->field($model, 'pwd')->hint('不改密码请留空')->passwordInput(['maxlength' => true, 'value' => '']) ?>
+            <?= $form->field($model, 'password')->hint('不改密码请留空')->passwordInput(['maxlength' => true, 'value' => '']) ?>
 
             <?= $form->field($model, 'nickname')->textInput(['maxlength' => true]) ?>
-
+            
             <?= $form->field($model, 'role_name')->dropDownList($roles, ['prompt' => '请选择角色']) ?>
 
             <div class="form-group">

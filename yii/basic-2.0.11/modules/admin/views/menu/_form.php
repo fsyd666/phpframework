@@ -13,13 +13,13 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'fid')->dropDownList($model->parents,['prompt'=>'请选择']) ?>
+    <?= $form->field($model, 'parent')->dropDownList($model->parents,['prompt'=>'请选择']) ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'perm')->dropDownList(ArrayHelper::map($pers, 'name', 'name'),['prompt'=>'请选择']) ?>
+    <?= $form->field($model, 'route')->dropDownList(ArrayHelper::map($pers, 'name', 'name'),['prompt'=>'请选择']) ?>
 
-    <?= $form->field($model, 'sort')->textInput() ?>
+    <?= $form->field($model, 'order')->textInput() ?>
 
     <div class="form-group">
         <div class="col-sm-offset-1 col-sm-10">

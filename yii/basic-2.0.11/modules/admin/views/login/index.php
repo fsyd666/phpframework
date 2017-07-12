@@ -41,7 +41,7 @@ $this->registerCssFile('@web/lib/font-awesome/css/font-awesome.min.css');
                         <?= $form->field($model, 'password')->passwordInput()->label('密　码：') ?>
                         <?=
                         $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                            'captchaAction' => '/site/captcha',
+                            'captchaAction' => '/admin/login/captcha',
                             'template' => '{input}&nbsp;&nbsp;&nbsp;&nbsp;{image}',
                             'imageOptions' => ['title' => '点击刷新'],
                             'options' => ['class' => 'form-control x164 in']
