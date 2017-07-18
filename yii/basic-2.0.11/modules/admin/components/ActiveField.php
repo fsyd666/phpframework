@@ -19,4 +19,13 @@ class ActiveField extends \yii\widgets\ActiveField {
         return $this;
     }
 
+    /**
+     * 修改栅格的宽度
+     * @return $this
+     */
+    public function rowColClass($colClass = 'col-sm-8') {
+        $this->template = '{label}<div class="' . $colClass . '">{input}</div><div class="col-sm-3">{hint}{error}</div>';
+        return $this;
+    }
+
 }
