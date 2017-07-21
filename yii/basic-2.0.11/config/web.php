@@ -5,7 +5,7 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log', 'manage'],
+    'bootstrap' => ['log'],
     'language' => 'zh-CN',
     'components' => [
         'formatter' => [
@@ -47,6 +47,7 @@ $config = [
         ],
         'db' => require(__DIR__ . '/db.php'),
         'urlManager' => [
+            'class' => 'app\modules\manage\components\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'suffix' => '.html',

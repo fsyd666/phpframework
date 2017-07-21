@@ -24,7 +24,7 @@ class LoginController extends \yii\web\Controller {
     public function actionLogout() {
         $user = Yii::$app->admin;
         $user->logout();
-        return $this->redirect($user->loginUrl);
+        return $this->redirect(['index']);
     }
 
     public function actions() {
