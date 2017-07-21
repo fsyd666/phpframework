@@ -17,7 +17,7 @@ echo "<?php\n";
 ?>
 
 use yii\helpers\Html;
-use app\modules\admin\components\ActiveForm;
+use app\modules\manage\components\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */

@@ -12,7 +12,7 @@ echo "<?php\n";
 ?>
 
 use yii\helpers\Html;
-use <?= $generator->indexWidgetType === 'grid' ? "app\modules\admin\components\GridView" : "yii\\widgets\\ListView" ?>;
+use <?= $generator->indexWidgetType === 'grid' ? "app\modules\manage\components\GridView" : "yii\\widgets\\ListView" ?>;
 <?= $generator->enablePjax ? 'use yii\widgets\Pjax;' : '' ?>
 
 /* @var $this yii\web\View */
@@ -45,7 +45,7 @@ $this->title = '<?= $generator->title . '管理' ?>';
             <?= "<?= " ?>GridView::widget([
             'dataProvider' => $dataProvider,
             <?= !empty($generator->searchModelClass) ? "'filterModel' => \$searchModel,\n        'columns' => [\n" : "'columns' => [\n"; ?>
-            ['class' => 'app\modules\admin\components\SelectColumn'],
+            ['class' => 'app\modules\manage\components\SelectColumn'],
 
             <?php
             $count = 0;
@@ -69,7 +69,7 @@ $this->title = '<?= $generator->title . '管理' ?>';
             }
             ?>
 
-            ['class' => 'app\modules\admin\components\ActionColumn'],
+            ['class' => 'app\modules\manage\components\ActionColumn'],
             ],
             ]); ?>
         <?php else: ?>
