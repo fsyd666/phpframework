@@ -47,10 +47,8 @@ $config = [
         ],
         'db' => require(__DIR__ . '/db.php'),
         'urlManager' => [
-            'class' => 'app\modules\manage\components\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'suffix' => '.html',
             'rules' => [
             ],
         ],
@@ -65,6 +63,13 @@ $config = [
         ],
     ],
 ];
+            
+/*
+//后台配置 非伪静态
+$config['components']['urlManager']['rules'][] = ['pattern' => 'manage', 'route' => 'manage/default/index', 'suffix' => ''];
+$config['components']['urlManager']['rules'][] = ['pattern' => 'manage/<controller:[\w\-]+>/<action:[\w\-]+>',
+    'route' => 'manage/<controller>/<action>', 'suffix' => ''];
+*/
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
