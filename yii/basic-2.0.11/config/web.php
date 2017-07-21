@@ -5,7 +5,7 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'manage'],
     'language' => 'zh-CN',
     'components' => [
         'formatter' => [
@@ -24,8 +24,7 @@ $config = [
         ],
         'admin' => [
             'class' => 'yii\web\User',
-            'identityClass' => 'app\modules\admin\models\AdminUser',
-            'loginUrl' => '/admin/login/index',
+            'identityClass' => 'app\modules\manage\models\AdminUser',
             'enableAutoLogin' => true,
             'on afterLogin' => function($event) {
                 $admin = $event->identity; //这里的就是User Model的实例了
@@ -50,6 +49,7 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'suffix' => '.html',
             'rules' => [
             ],
         ],
@@ -59,8 +59,8 @@ $config = [
     ],
     'params' => $params,
     'modules' => [
-        'admin' => [
-            'class' => 'app\modules\admin\Module',
+        'manage' => [
+            'class' => 'app\modules\manage\Module',
         ],
     ],
 ];
