@@ -21,7 +21,7 @@ use app\modules\manage\components\ActiveForm;
             if (is_array($pers))
                 foreach ($pers as $v) {
                     if (is_array($v)) {
-                        echo Html::checkboxList('pers', $childs, $v, ['class' => 'check-div']);
+                        echo Html::checkboxList('pers', isset($childs)?$childs:null, $v, ['class' => 'check-div']);
                     }
                 }
             ?>
