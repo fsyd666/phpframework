@@ -10,6 +10,7 @@ use Think\Model;
  */
 class MenuModel extends Model {
 
+    protected $autoCheckFields = false;
     public $menu = array(
         3 => '会员管理',
         7 => '内容管理',

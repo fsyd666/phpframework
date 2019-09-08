@@ -51,7 +51,7 @@
             <p>服务器时间：{:date('Y-m-d H:i:s')}</p>
             <p>服务器IP：{$_SERVER['SERVER_ADDR']}</p>
             <p>PHP版本：{:phpversion()}</p>
-            <p>MySQL版本：{:mysql_get_server_info()}</p>
+            <p>MySQL版本：5.7</p>
             <p>全局变量：{:ini_get('register_globals') ? '开启' : '关闭'}<span class="help-block" style="display: inline;">(建议关闭)</p>
             <p>最大上传文件：{:ini_get('post_max_size')}</p>
         </div>
