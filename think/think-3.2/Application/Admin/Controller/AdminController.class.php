@@ -20,7 +20,7 @@ class AdminController extends CommonController {
             $param['where'] = "$stype like '%$sval%' AND id > 1";
             $list = D($this->model)->where($param['where'])->select();
         } else {
-            $list = D($this->model)->where('id>1')->select();            
+            $list = D($this->model)->where('id>1')->select();
         }
         $this->assign('list', $list);
         cookie('edit_prev_url', __SELF__);
@@ -131,7 +131,7 @@ class AdminController extends CommonController {
         }
         $this->assign('action_name', '修改')
                 ->assign('data', $m->find($this->user()))
-                ->assign('has_group', D('AuthGroupAccess')->where("uid=$id")->getField('group_id', true))//拥有的组
+                ->assign('has_group', D('AuthGroupAccess')->where(['uid' => $this->user()])->getField('group_id', true))//拥有的组
                 ->assign('group', D('AuthGroup')->field('id,title')->select()); //用户组
 
         $this->display();
